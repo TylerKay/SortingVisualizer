@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sorting Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js" ></script>
+</head>
+<body>
+    <h1><center>Sorting Visualizer App</center></h1>
+    <br>
+    <input type ="button" value="Show Bar Chart" onclick="setBar()">
+    <input type ="button" value="Show Polar Area Chart" onclick="setPolar()">
+
+        <canvas id="myChart" width="400" height="300"></canvas>
+        <script>
+    
+            var ctx = document.getElementById("myChart").getContext("2d");
+            var myChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: array,
+                    datasets: [{
+                        data: array,
+                        backgroundColor: "rgba(111, 99, 236, 0.5",
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    legend: {
+                        display: false,
+                    } 
+                }
+            });
+
+            function sortArray(){
+                myChart.data.datasets[0].data = sortedArray;
+                myChart.update();
+            }
+
+            function resetArray(){
+                generateArray();
+                bubbleSort();
+                myChart.data.datasets[0].data = array;
+                myChart.update();
+            }
+
+            function setBar(){
+                myChart.destroy();
+                myChart = new Chart(ctx, {
+                    type: "bar",
+                    data: {
+                        labels: array,
+                        datasets: [{
+                            data: array,
+                            backgroundColor: "rgba(111, 99, 236, 0.5",
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        legend: {
+                            display: false,
+                        } 
+                    }
+                });
+            }
+
+            function setPolar(){
+                myChart.destroy();
+                myChart = new Chart(ctx, {
+                    type: "polarArea",
+                    data: {
+                        labels: array,
+                        datasets: [{
+                            data: array,
+                            backgroundColor: "rgba(111, 99, 236, 0.5",
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        legend: {
+                            display: false,
+                        } 
+                    }
+                });
+                
+            }
+
+        </script>
+        <input type ="button" value="Sort Array" onclick="sortArray()">
+        <input type ="button" value="Regenerate Array" onclick="resetArray()">
+</body>
+</html>
