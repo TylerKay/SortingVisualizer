@@ -4,8 +4,16 @@ let max = 250;
 
 let array = [arraySize];
 let sortedArray = [arraySize];
+let labelArray = [arraySize];
+
+console.log("labelArray");
+console.log(labelArray);
 
 generateArray();
+
+for (let i = 0; i < 40; ++i){
+    labelArray[i] = "Element " + String(i+1);
+}
 
 function generateArray(){
     for (var i = 0; i < arraySize; ++i){
